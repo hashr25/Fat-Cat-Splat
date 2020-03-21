@@ -127,6 +127,7 @@ public class RunningPlayer : MonoBehaviour {
 			currentMoveSpeed = 0f;
 			GameController.gameController.StopBackground ();
 			ScoreTracker.scoreTracker.Die ();
+			GameController.gameController.Save();
 			//GameObject.Find ("GameController").GetComponent<AdManager> ().ShowAd ();
 		}
 	}

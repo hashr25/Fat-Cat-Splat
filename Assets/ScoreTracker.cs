@@ -15,6 +15,8 @@ public class ScoreTracker : MonoBehaviour {
 	public long grassChapterHighScore;
 	public long mistChapterHighScore;
 
+	private string hashKey = "The value of life is only what you make of it.";
+
 	void Awake () {
 		if (scoreTracker == null) {
 			DontDestroyOnLoad (gameObject);
@@ -48,11 +50,13 @@ public class ScoreTracker : MonoBehaviour {
 	}
 
 	void OnDestroy(){
-		Save ();
+        //Do not save on destroy. For some reason when OnDestroy is called
+        //All variables already are written back to default values( 0 or false )
+        //Save();
 	}
 
 	public void CatchCoin() {
-		currentScore += 100;
+		currentScore += 100 * currentScoreMultiplier;
 	}
 
 	public void CatchScoreMultiplier(){
@@ -62,6 +66,7 @@ public class ScoreTracker : MonoBehaviour {
 	public void Die (){
 		active = false;
 		LogScore ();
+		Save();
 	}
 
 	void LogScore(){
@@ -85,25 +90,62 @@ public class ScoreTracker : MonoBehaviour {
 	}
 
 	public void Save() {
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create (Application.persistentDataPath + "/scoreInfo.dat");
+		if (true/*Application.platform == RuntimePlatform.WebGLPlayer*/)
+		{
+			print("Trying to save ScoreData.");
+			ScoreData data = new ScoreData(grassChapterHighScore, mistChapterHighScore);
+			string json = JsonUtility.ToJson(data);
+			print("JSON: " + json);
+			string encryptedData = Encrypt.EncryptString(json, hashKey);
+			print("Encrypted Data: " + encryptedData);
 
-		ScoreData data = new ScoreData (grassChapterHighScore, mistChapterHighScore);
+			PlayerPrefs.SetString("ScoreSave", encryptedData);
+			PlayerPrefs.Save();
+			print("Called PlayerPrefs.Save();");
+		}
+		else
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Create(Application.persistentDataPath + "/scoreInfo.dat");
 
-		bf.Serialize (file, data);
-		file.Close ();
+			ScoreData data = new ScoreData(grassChapterHighScore, mistChapterHighScore);
+
+			bf.Serialize(file, data);
+			file.Close();
+		}
 	}
 
 	public void Load() {
-		if (File.Exists (Application.persistentDataPath + "/scoreInfo.dat")) {
-			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/scoreInfo.dat", FileMode.Open);
+        if(true/*Application.platform == RuntimePlatform.WebGLPlayer*/)
+        {
+			print("Trying to Load ScoreSave");
+			string encryptedSaveData = PlayerPrefs.GetString("ScoreSave");
 
-			ScoreData data = (ScoreData)bf.Deserialize (file);
-			file.Close ();
+			print("Encrypted Data: " + encryptedSaveData);
 
-			grassChapterHighScore = data.grassChapterHighScore;
-			mistChapterHighScore = data.mistChapterHighScore;
+			if (!String.IsNullOrEmpty(encryptedSaveData))
+			{
+				string json = Encrypt.DecryptString(encryptedSaveData, hashKey);
+				print("JSON: " + json);
+				ScoreData data = JsonUtility.FromJson<ScoreData>(json);
+
+				grassChapterHighScore = data.grassChapterHighScore;
+				mistChapterHighScore = data.mistChapterHighScore;
+			}
+		}
+        else
+		{
+			if (File.Exists(Application.persistentDataPath + "/scoreInfo.dat"))
+			{
+				BinaryFormatter bf = new BinaryFormatter();
+				FileStream file = File.Open(Application.persistentDataPath + "/scoreInfo.dat", FileMode.Open);
+
+				ScoreData data = (ScoreData)bf.Deserialize(file);
+				file.Close();
+
+				grassChapterHighScore = data.grassChapterHighScore;
+				mistChapterHighScore = data.mistChapterHighScore;
+			}
 		}
 	}
 }

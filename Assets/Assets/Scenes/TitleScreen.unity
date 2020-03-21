@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 52902371}
   - component: {fileID: 52902370}
   - component: {fileID: 52902369}
+  - component: {fileID: 52902372}
   m_Layer: 5
   m_Name: Twitter
   m_TagString: Untagged
@@ -382,6 +383,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52902367}
   m_CullTransparentMesh: 0
+--- !u!114 &52902372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52902367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f209a5af0fd4998b7eee6b15aaade8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  urlToOpen: http://www.twitter.com/HotHashGames/
 --- !u!1 &58926154
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,10 +806,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 518260131}
     - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 518260131}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
 --- !u!1 &203134526
@@ -1786,6 +1808,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &518260131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 159216, guid: 9d453bef3ab9c4a4394a25c220787663,
+    type: 3}
+  m_PrefabInstance: {fileID: 1981654432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &561465009
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeTimer: 0.075
+  isStoreEnabled: 0
+  errorDialogPrefab: {fileID: 961571746209549035, guid: 2971ebd2d9f654c21adcf0301099942e,
+    type: 3}
 --- !u!114 &608472934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2475,11 +2506,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 677469457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bab1e48d419042248cc64b79604b337, type: 3}
+  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  iOSGameID: 1068856
-  androidGameID: 1068857
 --- !u!4 &677469459
 Transform:
   m_ObjectHideFlags: 0
@@ -2570,11 +2599,11 @@ PrefabInstance:
     - target: {fileID: 11412596, guid: 2cac0e51646eb410781c96927d974b23, type: 3}
       propertyPath: mainTheme
       value: 
-      objectReference: {fileID: 8300000, guid: e609e26668cc949209be9563c101efda, type: 3}
+      objectReference: {fileID: 8300000, guid: d0f4a2e65595e4102abd3d0b5ab41204, type: 3}
     - target: {fileID: 11412596, guid: 2cac0e51646eb410781c96927d974b23, type: 3}
       propertyPath: mistTheme
       value: 
-      objectReference: {fileID: 8300000, guid: 86acb9dcb3049450d951237282a1726f, type: 3}
+      objectReference: {fileID: 8300000, guid: 0429795e31a274b46b827c3333e09682, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2cac0e51646eb410781c96927d974b23, type: 3}
 --- !u!1 &737554413
@@ -2683,6 +2712,7 @@ GameObject:
   - component: {fileID: 848644307}
   - component: {fileID: 848644306}
   - component: {fileID: 848644305}
+  - component: {fileID: 848644308}
   m_Layer: 5
   m_Name: Facebook
   m_TagString: Untagged
@@ -2799,6 +2829,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848644303}
   m_CullTransparentMesh: 0
+--- !u!114 &848644308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848644303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16f209a5af0fd4998b7eee6b15aaade8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  urlToOpen: http://www.facebook.com/HotHashGames/
 --- !u!1 &999560145
 GameObject:
   m_ObjectHideFlags: 0
@@ -5329,13 +5372,13 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1905132558}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 608472933}
-        m_MethodName: 
+        m_MethodName: OnCharacterStoreButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

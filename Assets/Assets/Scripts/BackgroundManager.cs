@@ -16,6 +16,7 @@ public class BackgroundManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //Moving background to create paralax effect.
 		transform.Translate (Time.deltaTime * backgroundMovementSpeed, 0, 0);
 
 	}

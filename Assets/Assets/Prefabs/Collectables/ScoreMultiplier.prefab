@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 479692}
   - component: {fileID: 21264478}
   - component: {fileID: 5867520}
-  - component: {fileID: 9532020}
-  - component: {fileID: 11447236}
   - component: {fileID: 11474752}
+  - component: {fileID: -4602589847727050034}
   m_Layer: 11
-  m_Name: Coin
+  m_Name: ScoreMultiplier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 166682}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
 --- !u!212 &21264478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -74,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: -1454904547
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 947f8c39956f04ce280cdfcdb9421d25, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8abc047eedee4f95898dc92e410fe7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,37 +100,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.06}
   serializedVersion: 2
   m_Radius: 0.21226169
---- !u!95 &9532020
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166682}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fb317ce80570f4152b8b39d5361d8188, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &11447236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 166682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 403aedcf303994a29a9ba957662a4701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11474752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,3 +113,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestructTime: 5
+--- !u!114 &-4602589847727050034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f0e4610e0044e1292a73cc61b02c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
