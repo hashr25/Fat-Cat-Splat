@@ -61,6 +61,8 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+#Massive Assets
 ./Library/il2cpp_cache/linkresult_A1A96B4078D6EF40750095A79DD08316/build.bc
 /Library/il2cpp_cache/linkresult_A1A96B4078D6EF40750095A79DD08316/build.bc
 Library/il2cpp_cache/linkresult_A1A96B4078D6EF40750095A79DD08316/build.bc
@@ -77,3 +79,8 @@ iOS-Build/Libraries/libiPhone-lib.a
 /Temp/StagingArea/Data/sharedassets0.assets.resS
 Temp/StagingArea/Data/sharedassets0.assets.resS
 */Temp/StagingArea/Data/sharedassets0.assets.resS
+
+# Encryption keys
+Assets/Assets/Scripts/HashKey.cs
+Assets/Assets/Scripts/HashKey.cs.meta
+*HashKey*

@@ -41,9 +41,9 @@ public class ScoreTracker : MonoBehaviour {
 		currentScore = 0;
 		currentScoreMultiplier = 1;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void FixedUpdate () {
 		if (active) {
 			currentScore += 1 * currentScoreMultiplier;
 		}
@@ -90,62 +90,18 @@ public class ScoreTracker : MonoBehaviour {
 	}
 
 	public void Save() {
-		if (true/*Application.platform == RuntimePlatform.WebGLPlayer*/)
-		{
-			print("Trying to save ScoreData.");
-			ScoreData data = new ScoreData(grassChapterHighScore, mistChapterHighScore);
-			string json = JsonUtility.ToJson(data);
-			print("JSON: " + json);
-			string encryptedData = Encrypt.EncryptString(json, hashKey);
-			print("Encrypted Data: " + encryptedData);
-
-			PlayerPrefs.SetString("ScoreSave", encryptedData);
-			PlayerPrefs.Save();
-			print("Called PlayerPrefs.Save();");
-		}
-		else
-		{
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Create(Application.persistentDataPath + "/scoreInfo.dat");
-
-			ScoreData data = new ScoreData(grassChapterHighScore, mistChapterHighScore);
-
-			bf.Serialize(file, data);
-			file.Close();
-		}
+		ScoreData data = new ScoreData(grassChapterHighScore, mistChapterHighScore);
+		DataIO.Save<ScoreData>("ScoreSave", data);
+		
 	}
 
 	public void Load() {
-        if(true/*Application.platform == RuntimePlatform.WebGLPlayer*/)
+		ScoreData data = DataIO.Load<ScoreData>("ScoreSave");
+
+        if(data != null)
         {
-			print("Trying to Load ScoreSave");
-			string encryptedSaveData = PlayerPrefs.GetString("ScoreSave");
-
-			print("Encrypted Data: " + encryptedSaveData);
-
-			if (!String.IsNullOrEmpty(encryptedSaveData))
-			{
-				string json = Encrypt.DecryptString(encryptedSaveData, hashKey);
-				print("JSON: " + json);
-				ScoreData data = JsonUtility.FromJson<ScoreData>(json);
-
-				grassChapterHighScore = data.grassChapterHighScore;
-				mistChapterHighScore = data.mistChapterHighScore;
-			}
-		}
-        else
-		{
-			if (File.Exists(Application.persistentDataPath + "/scoreInfo.dat"))
-			{
-				BinaryFormatter bf = new BinaryFormatter();
-				FileStream file = File.Open(Application.persistentDataPath + "/scoreInfo.dat", FileMode.Open);
-
-				ScoreData data = (ScoreData)bf.Deserialize(file);
-				file.Close();
-
-				grassChapterHighScore = data.grassChapterHighScore;
-				mistChapterHighScore = data.mistChapterHighScore;
-			}
+			grassChapterHighScore = data.grassChapterHighScore;
+			mistChapterHighScore = data.mistChapterHighScore;
 		}
 	}
 }

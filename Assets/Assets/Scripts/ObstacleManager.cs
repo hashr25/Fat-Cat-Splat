@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
-public class ObstacleManager : MonoBehaviour {
+public class ObstacleManager : MonoBehaviour
+{
 	public GameObject player;
 
-	public float minTimeBetweenObstacles = 2;
+	public float minTimeBetweenObstacles = 3;
 	public float maxTimeBetweenObstacles = 5;
 	float timeTilNextObstacle;
+	bool pushBackTime = false;
 
 	public GameObject[] sceneOneObstacles;
 	public GameObject[] sceneTwoObstacles;
@@ -15,6 +18,7 @@ public class ObstacleManager : MonoBehaviour {
 	public GameObject[] allObstacles;
 
 	public int currentScene = 0;
+	public float pencilPushbackTime = 1.5f;
 
 
 	// Use this for initialization
@@ -30,6 +34,7 @@ public class ObstacleManager : MonoBehaviour {
 		if (timeTilNextObstacle <= 0) {
 			SpawnNextObject ();
 			timeTilNextObstacle = (float)Random.Range (minTimeBetweenObstacles * 100, maxTimeBetweenObstacles * 100) / 100;
+            if (pushBackTime) { timeTilNextObstacle += pencilPushbackTime; }
 		} else {
 			timeTilNextObstacle -= Time.deltaTime;
 		}
@@ -71,9 +76,18 @@ public class ObstacleManager : MonoBehaviour {
 
 			currentSpawningObject.transform.position = new Vector2 (player.transform.position.x + 15, yPosition);
 		}
+
+        if(currentSpawningObject.name.Contains("PencilBundle"))
+        {
+			pushBackTime = true;
+        }
+        else
+        {
+			pushBackTime = false;
+        }
 	}
 
 	void FindAllObstacles(){
-		allObstacles = GameObject.FindGameObjectsWithTag ("Enemy");
+		allObstacles = sceneOneObstacles.Concat(sceneTwoObstacles).Concat(sceneThreeObstacles).Concat(sceneFourObstacles).ToArray();
 	}
 }

@@ -3705,42 +3705,22 @@ PrefabInstance:
       objectReference: {fileID: 1797920964}
     - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: minTimeBetweenObstacles
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: maxTimeBetweenObstacles
       value: 1.75
       objectReference: {fileID: 0}
+    - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: sceneTwoObstacles.Array.data[7]
+      value: 
+      objectReference: {fileID: 1956513685}
     - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1678096765}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
---- !u!1 &1591297249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 199074, guid: b9a6991400c5a47c6bc4e1cb37ab00ac,
-    type: 3}
-  m_PrefabInstance: {fileID: 1591297248}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1591297250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591297249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b4e8bed6cd94e76bbbf2bdef8ca9c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  multiplierPrefab: {fileID: 166682, guid: 567437a4de7794d64ad52eec56ffa57e, type: 3}
-  player: {fileID: 1678096765}
-  minCoinHeight: -3.4
-  maxCoinHeight: 4.7
-  minTimeBetweenMultipliers: 15
-  maxTimeBetweenMultipliers: 30
 --- !u!1 &1611140370
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,6 +5094,12 @@ PrefabInstance:
 --- !u!4 &1956513684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 469290, guid: bf87a19c0848248558787b9e4e15ddb1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1956513683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1956513685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 143032, guid: bf87a19c0848248558787b9e4e15ddb1,
     type: 3}
   m_PrefabInstance: {fileID: 1956513683}
   m_PrefabAsset: {fileID: 0}

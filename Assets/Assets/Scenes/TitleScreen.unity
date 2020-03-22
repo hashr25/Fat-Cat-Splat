@@ -810,6 +810,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 518260131}
+    - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: minTimeBetweenObstacles
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: maxTimeBetweenObstacles
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -4932,7 +4940,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1024582385
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5b4165d58e18543a8b1900dca06f4ae6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5845,7 +5853,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1024582385
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5b4165d58e18543a8b1900dca06f4ae6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

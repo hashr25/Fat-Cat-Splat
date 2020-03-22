@@ -14,8 +14,6 @@ public class GameController : MonoBehaviour {
 	public bool grassChapterPassed = false;
 	public bool mistChapterPassed = false;
 
-	private string hashKey = "The value of life is only what you make of it.";
-
 	// Use this for initialization
 	void Awake () {
 		if (gameController == null) {
@@ -38,65 +36,19 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void Save() {
-		if (true/*Application.platform == RuntimePlatform.WebGLPlayer*/)
-		{
-			print("Trying to save PlayerData:");
-            PlayerData data = new PlayerData(coins, grassChapterPassed, mistChapterPassed);
-			string json = JsonUtility.ToJson(data);
-			print("JSON: " + json);
-			string encryptedData = Encrypt.EncryptString(json, hashKey);
-			print("Encrypted: " + encryptedData);
-
-			PlayerPrefs.SetString("PlayerSave", encryptedData);
-			PlayerPrefs.Save();
-			print("Called PlayerPrefs.Save();");
-		}
-		else
-		{
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
-
-			PlayerData data = new PlayerData(coins, grassChapterPassed, mistChapterPassed);
-
-			bf.Serialize(file, data);
-			file.Close();
-		}
+		PlayerData data = new PlayerData(coins, grassChapterPassed, mistChapterPassed);
+		DataIO.Save<PlayerData>("PlayerSave", data);
 	}
 
 	public void Load() {
-		if (true/*Application.platform == RuntimePlatform.WebGLPlayer*/)
-		{
-			print("Trying to load PlayerSave");
-			string encryptedSaveData = PlayerPrefs.GetString("PlayerSave");
-			print("Encrypted Data: " + encryptedSaveData);
-
-            if (!String.IsNullOrEmpty(encryptedSaveData))
-            {
-				string json = Encrypt.DecryptString(encryptedSaveData, hashKey);
-				print("JSON: " + json);
-				PlayerData data = JsonUtility.FromJson<PlayerData>(json);
-
-				coins = data.coins;
-				grassChapterPassed = data.grassChapterPassed;
-				mistChapterPassed = data.mistChapterPassed;
-			}
-			
+		PlayerData data = DataIO.Load<PlayerData>("PlayerSave");
+        if(data != null)
+        {
+			coins = data.coins;
+			grassChapterPassed = data.grassChapterPassed;
+			mistChapterPassed = data.mistChapterPassed;
 		}
-		else
-		{
-			if (File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
-			{
-				BinaryFormatter bf = new BinaryFormatter();
-				FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
-
-				PlayerData data = (PlayerData)bf.Deserialize(file);
-				file.Close();
-
-				coins = data.coins;
-				grassChapterPassed = data.grassChapterPassed;
-				mistChapterPassed = data.mistChapterPassed;
-			}
-		}
+        
 	}
 }
 
