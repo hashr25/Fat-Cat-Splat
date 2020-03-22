@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BackgroundManager : MonoBehaviour {
 	public float backgroundMovementSpeed = 2.5f;
+	public float fullSceneWidth = 327.48f;
+	public float groundShift = 81.87f;
 
 	public GameObject[] scenes; 
 	public GameObject ground;
@@ -23,11 +25,12 @@ public class BackgroundManager : MonoBehaviour {
 
 	public void ShiftBackground(){
 		if (firstScenePassed) {
-			scenes [sceneToMove % 4].transform.position = new Vector3((scenes [sceneToMove % 4].transform.position.x+327.68f), 0f, 0f);
-			ground.transform.position = new Vector3 ((ground.transform.position.x + 81.92f), -3.6f, 0f);
+			scenes [sceneToMove % 4].transform.position = new Vector3((scenes [sceneToMove % 4].transform.position.x + fullSceneWidth), 0f, 0f);
+			ground.transform.position = new Vector3 ((ground.transform.position.x + (groundShift * 2)), -3.6f, 0f);
 			sceneToMove++;
 		} else {
 			firstScenePassed = true;
+			ground.transform.position = new Vector3((ground.transform.position.x + groundShift), -3.6f, 0f);
 		}
 	}
 }
