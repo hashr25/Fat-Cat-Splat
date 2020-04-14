@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour {
 	static public AudioManager audioManager;
 
 	public AudioSource music;
+	public bool mute;
 
 	public AudioClip mainTheme;
 	public AudioClip mistTheme;
@@ -69,23 +70,15 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	public void Save(){
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create (Application.persistentDataPath + "/soundInfo.dat");
-
 		SoundData data = new SoundData(music.mute, music.volume);
-
-		bf.Serialize (file, data);
-		file.Close ();
+		DataIO.Save<SoundData>("SoundSave", data);
 	}
 
 	public void Load(){
-		if (File.Exists (Application.persistentDataPath + "/soundInfo.dat")) {
-			BinaryFormatter bf = new BinaryFormatter ();
-			FileStream file = File.Open (Application.persistentDataPath + "/soundInfo.dat", FileMode.Open);
-
-			SoundData data = (SoundData)bf.Deserialize (file);
-			file.Close ();
-
+		SoundData data = DataIO.Load<SoundData>("SoundSave");
+		if (data != null)
+		{
+			mute = data.mute;
 			music.mute = data.mute;
 			music.volume = data.soundVol;
 		}

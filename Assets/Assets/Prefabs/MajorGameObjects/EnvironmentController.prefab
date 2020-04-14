@@ -40,13 +40,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbdf99780f2a542648ebd401229a624e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  minTimeBetweenObstacles: 1
+  minTimeBetweenObstacles: 0.8
   maxTimeBetweenObstacles: 2
   sceneOneObstacles:
   - {fileID: 0}
@@ -128,6 +128,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentScene: 0
+  pencilPushbackTime: 1.5
+  obstaclePushbackOffset: 20
 --- !u!114 &11451192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e21dff5ca73045a188fe1cdc33ef0ff, type: 3}
   m_Name: 
@@ -153,7 +155,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7b4e8bed6cd94e76bbbf2bdef8ca9c1, type: 3}
   m_Name: 

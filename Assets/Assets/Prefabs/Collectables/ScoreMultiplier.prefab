@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 21264478}
   - component: {fileID: 5867520}
   - component: {fileID: 11474752}
-  - component: {fileID: -4602589847727050034}
+  - component: {fileID: 3570409363682652025}
   m_Layer: 11
   m_Name: ScoreMultiplier
   m_TagString: Untagged
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1454904547
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e8abc047eedee4f95898dc92e410fe7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selfDestructTime: 5
---- !u!114 &-4602589847727050034
+--- !u!114 &3570409363682652025
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 166682}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9f0e4610e0044e1292a73cc61b02c1f, type: 3}
+  m_Script: {fileID: 11500000, guid: f710874c52ad742c1bfc2477820db8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

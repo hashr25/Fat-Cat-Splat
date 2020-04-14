@@ -46,7 +46,8 @@ public class RunningPlayer : MonoBehaviour {
 
             if (resetTimer <= 0)
             {
-				SceneManager.LoadScene ("TitleScreen");
+				GameObject.Find("In Game GUI").GetComponent<InGameUI>().PlayerDied();
+				//SceneManager.LoadScene ("TitleScreen");
 			}
 		}
 	}
@@ -128,6 +129,7 @@ public class RunningPlayer : MonoBehaviour {
 			GameController.gameController.StopBackground ();
 			ScoreTracker.scoreTracker.Die ();
 			GameController.gameController.Save();
+			GameObject.Find("In Game GUI").GetComponent<InGameUI>().PlayerDied();
 			//GameObject.Find ("GameController").GetComponent<AdManager> ().ShowAd ();
 		}
 	}

@@ -186,10 +186,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 961571746209549035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3382071db32824453b01002d87c4bc66, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d0a8953645da401a8e589592018ab16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  errorMessage: There is a real big problem here...
+  errorMessage: Error Message
 --- !u!1 &961571746372320083
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +298,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1000, y: 1000}
+  m_SizeDelta: {x: 1250, y: 1250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &961571746976592598
 CanvasRenderer:

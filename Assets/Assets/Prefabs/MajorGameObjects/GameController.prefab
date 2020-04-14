@@ -3,12 +3,14 @@
 --- !u!1 &113250
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
   m_Component:
-  - 4: {fileID: 460210}
-  - 114: {fileID: 11422080}
+  - component: {fileID: 460210}
+  - component: {fileID: 11422080}
+  - component: {fileID: 1100331809}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -18,9 +20,10 @@ GameObject:
   m_IsActive: 1
 --- !u!4 &460210
 Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.671723, y: -3.7569551, z: 0}
@@ -28,11 +31,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11422080
 MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113250}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -42,14 +47,19 @@ MonoBehaviour:
   coins: 0
   grassChapterPassed: 0
   mistChapterPassed: 0
---- !u!1001 &100100000
-Prefab:
-  m_ObjectHideFlags: 1
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications: []
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 113250}
-  m_IsPrefabParent: 1
+--- !u!114 &1100331809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9c051b634a248449537f041802df40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  errorDialogPrefab: {fileID: 961571746209549035, guid: 2971ebd2d9f654c21adcf0301099942e,
+    type: 3}
+  confirmationDialogPrefab: {fileID: 961571746209549035, guid: 104cff08026964cdb8027a63a6334bea,
+    type: 3}

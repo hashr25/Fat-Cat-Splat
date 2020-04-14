@@ -19,6 +19,7 @@ public class ObstacleManager : MonoBehaviour
 
 	public int currentScene = 0;
 	public float pencilPushbackTime = 1.5f;
+	public float obstaclePushbackOffset = 20f;
 
 
 	// Use this for initialization
@@ -74,7 +75,7 @@ public class ObstacleManager : MonoBehaviour
 				yPosition = -2.5f;
 			}
 
-			currentSpawningObject.transform.position = new Vector2 (player.transform.position.x + 15, yPosition);
+			currentSpawningObject.transform.position = new Vector2 (player.transform.position.x + obstaclePushbackOffset, yPosition);
 		}
 
         if(currentSpawningObject.name.Contains("PencilBundle"))
