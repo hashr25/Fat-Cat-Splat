@@ -7,8 +7,8 @@ public class ScoreMultiplierGenerator : MonoBehaviour
 	public GameObject multiplierPrefab;
 	public GameObject player;
 
-	public float minCoinHeight = -3.4f;
-	public float maxCoinHeight = 4.7f;
+	public float minMultiplierHeight = -3.4f;
+	public float maxMultiplierHeight = 4.7f;
 
 	public float minTimeBetweenMultipliers = 15.0f;
 	public float maxTimeBetweenMultipliers = 30.0f;
@@ -38,7 +38,7 @@ public class ScoreMultiplierGenerator : MonoBehaviour
 
 	void SpawnCoin()
 	{
-		float multiplierY = (float)Random.Range(minCoinHeight * 100, maxCoinHeight * 100) / 100;
+		float multiplierY = (float)Random.Range(minMultiplierHeight * 100, maxMultiplierHeight * 100) / 100;
 		float multiplierX = player.transform.position.x + 20;
 
 		GameObject spawnedCoin = Instantiate(multiplierPrefab);

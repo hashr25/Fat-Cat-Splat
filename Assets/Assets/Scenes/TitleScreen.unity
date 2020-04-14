@@ -846,6 +846,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5966096720331931562, guid: b9a6991400c5a47c6bc4e1cb37ab00ac,
+        type: 3}
+      propertyPath: multiplierPrefab
+      value: 
+      objectReference: {fileID: 166682, guid: 567437a4de7794d64ad52eec56ffa57e, type: 3}
+    - target: {fileID: 5966096720331931562, guid: b9a6991400c5a47c6bc4e1cb37ab00ac,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 518260131}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
 --- !u!1 &203134526
