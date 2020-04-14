@@ -122,14 +122,4 @@ public class TitleScreenUI : MonoBehaviour {
 			Application.OpenURL(twitterUrl);
 		}
 	}
-
-    private void CreateErrorDialog(string errorMessage)
-    {
-		DialogSpawner.dialogSpawner.SpawnErrorDialog(errorMessage);
-	}
-
-    private void CreateConfirmationDialog(string confirmationMessage)
-    {
-		DialogSpawner.dialogSpawner.SpawnConfirmationDialog(confirmationMessage);
-    }
 }

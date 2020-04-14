@@ -13,6 +13,12 @@ public class ErrorDialog : MonoBehaviour
     void Start()
     {
         GetComponentInChildren<Text>().text = errorMessage;
+
+        if (GameObject.FindGameObjectsWithTag("GreyBackground").Length > 1)
+        {
+            GameObject greyBackground = GameObject.FindGameObjectsWithTag("GreyBackground")[1];
+            Destroy(greyBackground);
+        }
     }
 
     public void OnCloseButtonPushed()

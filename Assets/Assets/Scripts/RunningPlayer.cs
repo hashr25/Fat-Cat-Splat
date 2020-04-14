@@ -25,7 +25,8 @@ public class RunningPlayer : MonoBehaviour {
 	Animator anim;
 
 	[SerializeField] bool invincible = false;
-	bool dead = false;
+	public bool dead = false;
+	private bool alreadyDead = false;
 
 	void Start() {
 		controller = GetComponent<RunningController2D> ();
@@ -44,9 +45,10 @@ public class RunningPlayer : MonoBehaviour {
 		if (dead) {
 			resetTimer -= Time.deltaTime;
 
-            if (resetTimer <= 0)
+            if (!alreadyDead && resetTimer <= 0)
             {
 				GameObject.Find("In Game GUI").GetComponent<InGameUI>().PlayerDied();
+				alreadyDead = true;
 				//SceneManager.LoadScene ("TitleScreen");
 			}
 		}
@@ -121,7 +123,7 @@ public class RunningPlayer : MonoBehaviour {
 	}
 
 	public void Die() {
-		if (!invincible) {
+		if (!invincible && !dead) {
 			dead = true;
 			anim.SetBool ("Died", true);
 			controller.enabled = false;
@@ -129,7 +131,6 @@ public class RunningPlayer : MonoBehaviour {
 			GameController.gameController.StopBackground ();
 			ScoreTracker.scoreTracker.Die ();
 			GameController.gameController.Save();
-			GameObject.Find("In Game GUI").GetComponent<InGameUI>().PlayerDied();
 			//GameObject.Find ("GameController").GetComponent<AdManager> ().ShowAd ();
 		}
 	}

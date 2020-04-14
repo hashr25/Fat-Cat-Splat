@@ -12,6 +12,8 @@ public class InGameUI : MonoBehaviour {
 	GameObject scoreMultiplier;
 	Text scoreMultiplierText;
 
+	bool hasBrokenHighScore = false;
+
 	bool scoreMultiplierToggled = false;
 
 	void Start(){
@@ -32,6 +34,7 @@ public class InGameUI : MonoBehaviour {
 
 	void UpdateScore(){
 		scoreText.text = ScoreTracker.scoreTracker.currentScore.ToString();
+        if(int.Parse(scoreText.text) > int.Parse(highScoreText.text)) { hasBrokenHighScore = true; }
 	}
 
     public void UpdateScoreMultiplier()
@@ -66,6 +69,12 @@ public class InGameUI : MonoBehaviour {
 
     public void PlayerDied()
     {
-
+		DialogSpawner.dialogSpawner.SpawnConfirmationDialog("Would you like to play this stage again?",
+            () => { SceneManager.LoadScene(SceneManager.GetActiveScene().name); },
+            () => { SceneManager.LoadScene("TitleScreen"); } );
+        if (hasBrokenHighScore)
+        {
+			DialogSpawner.dialogSpawner.SpawnErrorDialog("You have beat your high score! Great job!");
+        }
     }
 }

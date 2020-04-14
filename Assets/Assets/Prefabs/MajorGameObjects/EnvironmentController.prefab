@@ -40,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbdf99780f2a542648ebd401229a624e, type: 3}
   m_Name: 
@@ -137,7 +137,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e21dff5ca73045a188fe1cdc33ef0ff, type: 3}
   m_Name: 
@@ -155,14 +155,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199074}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7b4e8bed6cd94e76bbbf2bdef8ca9c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e141e13169984821a02806620a9e992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   multiplierPrefab: {fileID: 166682, guid: 567437a4de7794d64ad52eec56ffa57e, type: 3}
   player: {fileID: 0}
-  minCoinHeight: -3.4
-  maxCoinHeight: 4.7
+  minMultiplierHeight: -3.4
+  maxMultiplierHeight: 4.7
   minTimeBetweenMultipliers: 15
   maxTimeBetweenMultipliers: 30

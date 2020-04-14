@@ -785,6 +785,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 199074, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: m_Name
+      value: EnvironmentController
+      objectReference: {fileID: 0}
     - target: {fileID: 456556, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -817,8 +821,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 456556, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456556, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 456556, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
@@ -826,18 +838,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 518260131}
     - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
-      propertyPath: minTimeBetweenObstacles
-      value: 0.8
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11446934, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
-      propertyPath: maxTimeBetweenObstacles
-      value: 2
-      objectReference: {fileID: 0}
+    - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 518260131}
     - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 11451192, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
+    - target: {fileID: 5966096720331931562, guid: b9a6991400c5a47c6bc4e1cb37ab00ac,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 518260131}
@@ -846,16 +859,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5966096720331931562, guid: b9a6991400c5a47c6bc4e1cb37ab00ac,
-        type: 3}
-      propertyPath: multiplierPrefab
-      value: 
-      objectReference: {fileID: 166682, guid: 567437a4de7794d64ad52eec56ffa57e, type: 3}
-    - target: {fileID: 5966096720331931562, guid: b9a6991400c5a47c6bc4e1cb37ab00ac,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 518260131}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9a6991400c5a47c6bc4e1cb37ab00ac, type: 3}
 --- !u!1 &203134526

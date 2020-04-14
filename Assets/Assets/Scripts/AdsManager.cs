@@ -8,8 +8,13 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 {
 #if UNITY_IOS
     private string gameId = "1068856";
+    private bool isMobile = true;
 #elif UNITY_ANDROID
     private string gameId = "1068857";
+    private bool isMobile = true;
+#else
+    private string gameId = "NOTVALID";
+    private bool isMobile = false;
 #endif
 
 #if DEBUG
@@ -38,24 +43,22 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
             Destroy(gameObject);
         }
 
-        Advertisement.AddListener(this);
-        Advertisement.Initialize(gameId, testMode);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (isMobile)
+        {
+            Advertisement.AddListener(this);
+            Advertisement.Initialize(gameId, testMode);
+        }
     }
 
     private void ShowSimpleAd()
     {
-        Advertisement.Show();
+        if (isMobile) { Advertisement.Show(); }
+        
     }
 
     private void ShowRewardedVideo()
     {
-        Advertisement.Show(rewardedPlacementId);
+        if (isMobile) { Advertisement.Show(rewardedPlacementId); }
     }
 
     public void OnUnityAdsDidFinish(string placementId, ShowResult showResult)
@@ -90,27 +93,35 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     public void RunSimpleAd()
     {
-        if (Advertisement.IsReady())
+        if (isMobile)
         {
-            ShowSimpleAd();
+            if (Advertisement.IsReady())
+            {
+                ShowSimpleAd();
+            }
+            else
+            {
+                DialogSpawner.dialogSpawner.SpawnErrorDialog("There are no ads available currently. Try again later!");
+            }
         }
-        else
-        {
-            DialogSpawner.dialogSpawner.SpawnErrorDialog("There are no ads available currently. Try again later!");
-        }
+        
     }
 
     public void RunGoldRewardAd(int numOfCoins)
     {
-        currentGoldReward = numOfCoins;
-        if (Advertisement.IsReady(rewardedPlacementId))
+        if (isMobile)
         {
-            ShowRewardedVideo();
+            currentGoldReward = numOfCoins;
+            if (Advertisement.IsReady(rewardedPlacementId))
+            {
+                ShowRewardedVideo();
+            }
+            else
+            {
+                DialogSpawner.dialogSpawner.SpawnErrorDialog("There are no ads available currently. Try again later!");
+            }
         }
-        else
-        {
-            DialogSpawner.dialogSpawner.SpawnErrorDialog("There are no ads available currently. Try again later!");
-        }
+        
     }
 
     public void OnUnityAdsReady(string placementId)

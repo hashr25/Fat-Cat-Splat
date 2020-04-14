@@ -42,50 +42,68 @@ public class ObstacleManager : MonoBehaviour
 	}
 
 	void SpawnNextObject () {
-		GameObject[] sceneObjects;
+        if (!player.GetComponent<RunningPlayer>().dead)
+        {
+			GameObject[] sceneObjects;
 
-		if (currentScene == 0) {
-			sceneObjects = sceneOneObstacles;
-		} else if (currentScene == 1) {
-			sceneObjects = sceneTwoObstacles;
-		} else if (currentScene == 2) {
-			sceneObjects = sceneThreeObstacles;
-		} else if (currentScene == 3) {
-			sceneObjects = sceneFourObstacles;
-		} else {
-			sceneObjects = allObstacles;
-		}
-
-		bool goodChoice = false;
-		GameObject currentSpawningObject = sceneObjects [Random.Range (0, sceneObjects.Length)];
-
-		while (!goodChoice && currentSpawningObject) {
-			if (currentSpawningObject.transform.position.x < player.transform.position.x - 5) {
-				goodChoice = true;
-			} else {
-				currentSpawningObject = sceneObjects [Random.Range (0, sceneObjects.Length)];
+			if (currentScene == 0)
+			{
+				sceneObjects = sceneOneObstacles;
 			}
-		}
-
-		//Them actually getting spawned... 
-		if (currentSpawningObject) {
-			float yPosition = currentSpawningObject.transform.position.y;
-
-			if (yPosition < -5) {
-				yPosition = -2.5f;
+			else if (currentScene == 1)
+			{
+				sceneObjects = sceneTwoObstacles;
+			}
+			else if (currentScene == 2)
+			{
+				sceneObjects = sceneThreeObstacles;
+			}
+			else if (currentScene == 3)
+			{
+				sceneObjects = sceneFourObstacles;
+			}
+			else
+			{
+				sceneObjects = allObstacles;
 			}
 
-			currentSpawningObject.transform.position = new Vector2 (player.transform.position.x + obstaclePushbackOffset, yPosition);
-		}
+			bool goodChoice = false;
+			GameObject currentSpawningObject = sceneObjects[Random.Range(0, sceneObjects.Length)];
 
-        if(currentSpawningObject.name.Contains("PencilBundle"))
-        {
-			pushBackTime = true;
-        }
-        else
-        {
-			pushBackTime = false;
-        }
+			while (!goodChoice && currentSpawningObject)
+			{
+				if (currentSpawningObject.transform.position.x < player.transform.position.x - 5)
+				{
+					goodChoice = true;
+				}
+				else
+				{
+					currentSpawningObject = sceneObjects[Random.Range(0, sceneObjects.Length)];
+				}
+			}
+
+			//Them actually getting spawned... 
+			if (currentSpawningObject)
+			{
+				float yPosition = currentSpawningObject.transform.position.y;
+
+				if (yPosition < -5)
+				{
+					yPosition = -2.5f;
+				}
+
+				currentSpawningObject.transform.position = new Vector2(player.transform.position.x + obstaclePushbackOffset, yPosition);
+			}
+
+			if (currentSpawningObject.name.Contains("PencilBundle"))
+			{
+				pushBackTime = true;
+			}
+			else
+			{
+				pushBackTime = false;
+			}
+		}
 	}
 
 	void FindAllObstacles(){

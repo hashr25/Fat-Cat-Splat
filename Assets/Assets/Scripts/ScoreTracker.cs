@@ -73,6 +73,7 @@ public class ScoreTracker : MonoBehaviour {
 		if (SceneManager.GetActiveScene ().name == "GrassChapter") {
 			if (grassChapterHighScore < currentScore) {
 				grassChapterHighScore = currentScore;
+				
 				if (Application.platform != RuntimePlatform.WebGLPlayer)
                 {
 					SocialController.socialController.ReportScore("GrassChapter", grassChapterHighScore);
@@ -81,6 +82,7 @@ public class ScoreTracker : MonoBehaviour {
 		} else if (SceneManager.GetActiveScene ().name == "MistChapter") {
 			if (mistChapterHighScore < currentScore) {
 				mistChapterHighScore = currentScore;
+
 				if (Application.platform != RuntimePlatform.WebGLPlayer)
                 {
 					SocialController.socialController.ReportScore("MistChapter", mistChapterHighScore);

@@ -15,14 +15,16 @@ public class ConfirmationDialog : MonoBehaviour
     void Start()
     {
         GetComponentInChildren<Text>().text = confirmationMessage;
+
+        if (GameObject.FindGameObjectsWithTag("GreyBackground").Length > 1)
+        {
+            GameObject greyBackground = GameObject.FindGameObjectsWithTag("GreyBackground")[1];
+            Destroy(greyBackground);
+        }
     }
 
     public void OnAcceptButtonPushed()
     {
-        //Destroy(this.gameObject);
-
-        //this.gameObject.AddComponent<SimpleAd>();
-        //DialogSpawner.dialogSpawner.SpawnConfirmationDialog("Spawned another confirmation dialog!");
         if(!AudioManager.audioManager.mute) { this.GetComponentInParent<AudioSource>().Play(); }
         if(acceptAction != null) { acceptAction.Invoke(); }
         Destroy(this.gameObject);
@@ -30,7 +32,6 @@ public class ConfirmationDialog : MonoBehaviour
 
     public void OnDeclineButtonPushed()
     {
-        //DialogSpawner.dialogSpawner.SpawnErrorDialog("Spawned an error dialog!");
         if (!AudioManager.audioManager.mute) { this.GetComponentInParent<AudioSource>().Play(); }
         if (declineAction != null) { declineAction.Invoke(); }
         Destroy(this.gameObject);
