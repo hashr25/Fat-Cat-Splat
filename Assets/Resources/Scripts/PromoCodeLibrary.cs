@@ -7,20 +7,18 @@ public class PromoCodeLibrary : MonoBehaviour
 {
     public static PromoCodeLibrary promoCodeLibrary;
 
-    public List<PromoCode> promoCodes = new List<PromoCode>();
+    //public List<PromoCode> promoCodes = new List<PromoCode>();
     public Dictionary<string, PromoCode> promoCodeDictionary = new Dictionary<string, PromoCode>();
 
-    
+
 
 
     public void Start()
     {
-        
-
         if (promoCodeLibrary == null)
         {
             DontDestroyOnLoad(gameObject);
-            SetupDictionary();
+            Load();
             promoCodeLibrary = this;
         }
         else if (promoCodeLibrary != this)
@@ -29,181 +27,140 @@ public class PromoCodeLibrary : MonoBehaviour
         }
     }
 
-
-    public void Save()
+    private void SetupDictionary(List<PromoCode> userPromoCodes)
     {
-        PromoCodeSaveData data = new PromoCodeSaveData(promoCodes);
-        DataIO.Save<PromoCodeSaveData>("PromoCodeSaveData", data);
+        promoCodeDictionary.Clear();
+
+        foreach (PromoCode code in userPromoCodes)
+        {
+            promoCodeDictionary.Add(code.code, code);
+        }
     }
+
+    private void GetPromoCodesForUser(User user)
+    {
+        PromoCodeWebService service = new PromoCodeWebService();
+        StartCoroutine(service.GetPromoCodesForUser(user.userName, SetupDictionary));
+    }
+
+    private void DecideAddUser(bool userExists)
+    {
+        PromoCodeWebService service = new PromoCodeWebService();
+        User user = new User();
+        if (!userExists)
+        {
+            StartCoroutine(service.AddUser(user, GetPromoCodesForUser));
+        }
+        else
+        {
+            GetPromoCodesForUser(user);
+        }
+    }
+
+
 
     public void Load()
     {
-        PromoCodeSaveData data = DataIO.Load<PromoCodeSaveData>("PromoCodeSaveData");
-
-        if (data != null)
-        {
-            promoCodes = data.promoCodes;
-
-            foreach (var code in promoCodes)
-            {
-                promoCodeDictionary.Add(code.promoCode, code);
-            }
-        }
-
-        
+        //Load from Web API
+        User user = new User();
+        PromoCodeWebService service = new PromoCodeWebService();
+        StartCoroutine(service.DoesUserExist(user.userName, DecideAddUser));
     }
 
-    private void SetupDictionary()
+    public void UsePromoCode(string code)
     {
-        Load();
+        code = code.ToUpper();
+        PromoCode promoCode;
+        User user = new User();
+        promoCodeDictionary.TryGetValue(code, out promoCode);
 
-        if(promoCodes.Count == 0 || promoCodeDictionary.Count == 0) // No promo codes?! Create a test one!
+        if (promoCode != null)
         {
-            PromoCode hashPackPromo = new PromoCode("HASHPACK", "LuLaGirls Promo", () =>
+            if (!promoCode.hasBeenUsed)
             {
-                GameController.gameController.coins += 1000;
-                GameController.gameController.Save();
-            }, false);
+                bool promoCodeHasBeenUsed = false;
 
-            promoCodes.Add(hashPackPromo);
-            promoCodeDictionary.Add(hashPackPromo.promoCode, hashPackPromo);
+                if (promoCode.currencyType == "Coin")
+                {
 
-            PromoCode robeyTech = new PromoCode("ROBEYROCKS", "Robeytech Appreciation", () =>
-            {
-                GameController.gameController.coins += 500;
-                GameController.gameController.Save();
-            }, false);
+                    PromoCodeWebService service = new PromoCodeWebService();
+                    StartCoroutine
+                    (
+                        service.UserUsePromoCode(user.userName, code, () =>
+                        {
+                            promoCodeHasBeenUsed = true;
+                            GameController.gameController.coins += promoCode.currencyGiven;
+                            GameController.gameController.Save();
+                            Load();
 
-            promoCodes.Add(robeyTech);
-            promoCodeDictionary.Add(robeyTech.promoCode, robeyTech);
-
-            PromoCode welcomeBackPromo = new PromoCode("WELCOME", "Welcome Back", () =>
-            {
-                GameController.gameController.coins += 500;
-                GameController.gameController.Save();
-            }, false);
-
-            promoCodes.Add(welcomeBackPromo);
-            promoCodeDictionary.Add(welcomeBackPromo.promoCode, welcomeBackPromo);
-
-            PromoCode newbiePromo = new PromoCode("NEWBIE", "Welcome Pack", () =>
-            {
-                GameController.gameController.coins += 500;
-                GameController.gameController.Save();
-            }, false);
-
-            promoCodes.Add(newbiePromo);
-            promoCodeDictionary.Add(newbiePromo.promoCode, newbiePromo);
-
-            PromoCode myLovePromo = new PromoCode("ILOVEYOUSEXY", "I love you beautiful!", () =>
-            {
-                GameController.gameController.coins += 500;
-                GameController.gameController.Save();
-            }, false);
-
-            promoCodes.Add(myLovePromo);
-            promoCodeDictionary.Add(myLovePromo.promoCode, myLovePromo);
-
-            Save();
-        }
-    }
-
-    public bool IsValidPromoCode(string promoCode)
-    {
-        bool isValidPromoCode = false;
-
-        PromoCode code;
-        promoCodeDictionary.TryGetValue(promoCode, out code);
-
-        if (code != null)
-        {
-            isValidPromoCode = true;
-        }
-
-        return isValidPromoCode;
-    }
-
-    public bool HasUserUsedPromoCode(string promoCode)
-    {
-        bool hasUserUsedPromoCode = false;
-
-        PromoCode code;
-        promoCodeDictionary.TryGetValue(promoCode, out code);
-
-        if(code != null)
-        {
-            hasUserUsedPromoCode = code.hasBeenUsed;
-        }
-
-        return hasUserUsedPromoCode;
-    }
-
-    public void UsePromoCode(string promoCode)
-    {
-        promoCode = promoCode.ToUpper();
-
-        if (IsValidPromoCode(promoCode))
-        {
-            if (!HasUserUsedPromoCode(promoCode))
-            {
-                PromoCode code;
-                promoCodeDictionary.TryGetValue(promoCode, out code);
-
-                promoCodes.Remove(code);
-                promoCodeDictionary.Remove(code.promoCode);
-
-                code.action.Invoke();
-                code.hasBeenUsed = true;
+                            if (promoCodeHasBeenUsed)
+                            {
+                                DialogSpawner.dialogSpawner.SpawnErrorDialog("The " + promoCode.description + " promo code has been used!");
+                            }
+                        })
+                    );
 
 
-                promoCodes.Add(code);
-                promoCodeDictionary.Add(code.promoCode, code);
+                }
+                else if (promoCode.currencyType == "Star") // Add as many of these as you want
+                {
+                    //No star yet, but who knows?!
+                }
+                else
+                {
+                    //Maybe throw an error here later?
+                }
 
-                Save();
 
-                DialogSpawner.dialogSpawner.SpawnErrorDialog("The " + code.displayName + " Promo code has been used!");
+
+
             }
             else
             {
                 DialogSpawner.dialogSpawner.SpawnErrorDialog("That promo code has already been used.");
             }
-        } else
+        }
+        else
         {
             DialogSpawner.dialogSpawner.SpawnErrorDialog("That is not a valid promo code");
         }
     }
 
-    
 
 
-    [Serializable]
-    public class PromoCode
-    {
-        public string promoCode;
-        public string displayName;
-        public Action action;
-        public bool hasBeenUsed;
-        
 
-        public PromoCode(string promoCode, string displayName, Action action, bool hasBeenUsed)
-        {
-            this.promoCode = promoCode;
-            this.displayName = displayName;
-            this.action = action;
-            this.hasBeenUsed = hasBeenUsed;
-        }
-    }
+    //[Serializable]
+    //public class PromoCode
+    //{
+    //    public int promoCodeId { get; set; }
+    //    public string code { get; set; }
+    //    public string description { get; set; }
+    //    public string currencyType { get; set; }
+    //    public int currencyGiven { get; set; }
+    //    public bool hasBeenUsed { get; set; }
 
-    [Serializable]
-    class PromoCodeSaveData
-    {
-        public List<PromoCode> promoCodes;
 
-        public PromoCodeSaveData(List<PromoCode> promoCodes)
-        {
-            this.promoCodes = promoCodes;
-        }
-    }
+    //    public PromoCode(int promoCodeId, string code, string description, string currencyType, int currencyGiven, bool hasBeenUsed)
+    //    {
+    //        this.promoCodeId = promoCodeId;
+    //        this.code = code;
+    //        this.description = description;
+    //        this.currencyType = currencyType;
+    //        this.currencyGiven = currencyGiven;
+    //        this.hasBeenUsed = hasBeenUsed;
+    //    }
+    //}
+
+    //[Serializable]
+    //class PromoCodeSaveData
+    //{
+    //    public List<PromoCode> promoCodes;
+
+    //    public PromoCodeSaveData(List<PromoCode> promoCodes)
+    //    {
+    //        this.promoCodes = promoCodes;
+    //    }
+    //}
 
     //  ======================================
 

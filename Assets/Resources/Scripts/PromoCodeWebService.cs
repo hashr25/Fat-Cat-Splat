@@ -4,63 +4,79 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 
-public class PromoCodeWebService : MonoBehaviour
+public class PromoCodeWebService
 {
-    
+    private string apiURL = "https://fat-cat-splat-api.herokuapp.com/api";
 
-    //public User AddUser(User user)
-    //{
-    //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create("heroku add user link");
-    //    request.Method = "POST";
-    //    request.ContentType = "application/json";
-    //    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-    //    StreamReader reader = new StreamReader(response.GetResponseStream());
-    //    string jsonResponse = reader.ReadToEnd();
-    //    WeatherInfo info = JsonUtility.FromJson<User>(jsonResponse);
-    //    return info;
-    //}
-
-    public User AddUser(User user)
+    public IEnumerator DoesUserExist(string userName, Action<bool> callback)
     {
-        ///<summary>
-		/// Post using UnityWebRequest class
-		/// </summary>
+        GetPromoCodeForUserRequest request = new GetPromoCodeForUserRequest();
+        request.securityToken = HashKey.apiKey;
+        request.userName = userName;
 
-        AddUserRequest addUserRequest = new AddUserRequest();
-        addUserRequest.user = user;
-        addUserRequest.securityToken = HashKey.apiKey;
-
-		var jsonString = JsonUtility.ToJson(addUserRequest);
+        var jsonString = JsonUtility.ToJson(request);
         byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
-        UnityWebRequest unityWebRequest = new UnityWebRequest("http://localhost:55376/api/values", "POST");
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(apiURL + "/userExists", jsonString);
+
         unityWebRequest.uploadHandler = new UploadHandlerRaw(byteData);
+        unityWebRequest.uploadHandler.contentType = "application/json";
         unityWebRequest.SetRequestHeader("Content-Type", "application/json");
 
         DownloadHandlerBuffer downloadHandlerBuffer = new DownloadHandlerBuffer();
         unityWebRequest.downloadHandler = downloadHandlerBuffer;
 
-        unityWebRequest.SendWebRequest();
+        yield return unityWebRequest.SendWebRequest();
 
         if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
         {
             Debug.Log(unityWebRequest.error);
-            return null;
         }
         else
         {
-            Debug.Log("Form upload complete! Status Code: " + unityWebRequest.responseCode);
-            string response = unityWebRequest.downloadHandler.text;
-            return JsonUtility.FromJson<User>(response);
+            string response = System.Text.Encoding.ASCII.GetString(unityWebRequest.downloadHandler.data);
+            bool userExists;
+            Boolean.TryParse(response, out userExists);
+            callback(userExists);
+            
         }
     }
 
-    public List<PromoCode> GetPromoCodesForUser(string userName)
+    public IEnumerator AddUser(User user, Action<User> callback)
     {
-        ///<summary>
-		/// Post using UnityWebRequest class
-		/// </summary>
+        AddUserRequest request = new AddUserRequest();
+        request.user = user;
+        request.securityToken = HashKey.apiKey;
 
+        var jsonString = JsonUtility.ToJson(request);
+        byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
+
+        //UnityWebRequest unityWebRequest = UnityWebRequest.Post(apiURL + "/user", jsonString);
+        UnityWebRequest unityWebRequest = new UnityWebRequest(apiURL + "/user", "POST");
+
+        unityWebRequest.uploadHandler = new UploadHandlerRaw(byteData);
+        unityWebRequest.uploadHandler.contentType = "application/json";
+        unityWebRequest.SetRequestHeader("Content-Type", "application/json");
+
+
+        DownloadHandlerBuffer downloadHandlerBuffer = new DownloadHandlerBuffer();
+        unityWebRequest.downloadHandler = downloadHandlerBuffer;
+
+        yield return unityWebRequest.SendWebRequest();
+
+        if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
+        {
+            Debug.Log(unityWebRequest.error);
+        }
+        else
+        {
+            string response = unityWebRequest.downloadHandler.text;
+            callback( JsonUtility.FromJson<User>(response));
+        }
+    }
+
+    public IEnumerator GetPromoCodesForUser(string userName, Action<List<PromoCode>> callback)
+    {
         GetPromoCodeForUserRequest request = new GetPromoCodeForUserRequest();
         request.userName = userName;
         request.securityToken = HashKey.apiKey;
@@ -68,62 +84,81 @@ public class PromoCodeWebService : MonoBehaviour
         var jsonString = JsonUtility.ToJson(request);
         byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
 
-        UnityWebRequest unityWebRequest = new UnityWebRequest("http://localhost:55376/api/values", "POST");
+        UnityWebRequest unityWebRequest = UnityWebRequest.Post(apiURL + "/userPromoCodes", jsonString);
+
         unityWebRequest.uploadHandler = new UploadHandlerRaw(byteData);
+        unityWebRequest.uploadHandler.contentType = "application/json";
         unityWebRequest.SetRequestHeader("Content-Type", "application/json");
 
         DownloadHandlerBuffer downloadHandlerBuffer = new DownloadHandlerBuffer();
         unityWebRequest.downloadHandler = downloadHandlerBuffer;
 
-        unityWebRequest.SendWebRequest();
+        yield return unityWebRequest.SendWebRequest();
 
         if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
         {
             Debug.Log(unityWebRequest.error);
-            return null;
+            callback(null);
         }
         else
         {
-            Debug.Log("Form upload complete! Status Code: " + unityWebRequest.responseCode);
             string response = unityWebRequest.downloadHandler.text;
-            return JsonUtility.FromJson<List<PromoCode>>(response);
+            PromoCode[] codes = JsonHelper.FromJsonWithFix<PromoCode>(response);
+            callback(new List<PromoCode>(codes));
         }
     }
 
-    public class PromoCode
+
+    public IEnumerator UserUsePromoCode(string userName, string promoCode, Action callback)
     {
-        public int promoCodeId { get; set; }
-        public string code { get; set; }
-        public string description { get; set; }
-        public string currencyType { get; set; }
-        public int currencyGiven { get; set; }
-        public Boolean hasBeenUsed { get; set; }
+        User user = new User();
+
+        UserUsePromoCodeRequest request = new UserUsePromoCodeRequest();
+        request.userName = user.userName;
+        request.promoCode = promoCode;
+        request.securityToken = HashKey.apiKey;
+
+        var jsonString = JsonUtility.ToJson(request);
+        byte[] byteData = System.Text.Encoding.ASCII.GetBytes(jsonString.ToCharArray());
+
+        UnityWebRequest unityWebRequest = new UnityWebRequest(apiURL + "/usePromoCode", "POST");
+
+        unityWebRequest.uploadHandler = new UploadHandlerRaw(byteData);
+        unityWebRequest.uploadHandler.contentType = "application/json";
+        unityWebRequest.SetRequestHeader("Content-Type", "application/json");
+
+        yield return unityWebRequest.SendWebRequest();
+
+        if (unityWebRequest.isNetworkError || unityWebRequest.isHttpError)
+        {
+            Debug.Log(unityWebRequest.error);
+        }
+        else
+        {
+            //string response = unityWebRequest.downloadHandler.text;
+            callback();
+        }
     }
 
-    public class User
-    {
-        public int userId { get; set; }
-        public string userName { get; set; }
-        public string deviceType { get; set; }
-        public string deviceModel { get; set; }
-    }
-
+    [Serializable]
     public class AddUserRequest
     {
-        public User user { get; set; }
-        public string securityToken { get; set; }
+        [SerializeField] public User user;
+        [SerializeField] public string securityToken;
     }
 
+    [Serializable]
     public class UserUsePromoCodeRequest
     {
-        public string userName { get; set; }
-        public string promoCode { get; set; }
-        public string securityToken { get; set; }
+        [SerializeField] public string userName;
+        [SerializeField] public string promoCode;
+        [SerializeField] public string securityToken;
     }
 
+    [Serializable]
     public class GetPromoCodeForUserRequest
     {
-        public string userName;
-        public string securityToken;
+        [SerializeField] public string userName;
+        [SerializeField] public string securityToken;
     }
 }
