@@ -27,7 +27,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
 
     public static AdsManager adsManager;
 
-    private int currentGoldReward = 0;
+    private int currentGoldReward = 100;
     private DateTime timeOfLastAdPlay;
 
     // Start is called before the first frame update
@@ -68,7 +68,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsListener
             GameController.gameController.coins += currentGoldReward;
             DialogSpawner.dialogSpawner.SpawnErrorDialog("You successfully watched the ad! You now have " + currentGoldReward.ToString() + " more coins!");
 
-            currentGoldReward = 0;
+            //currentGoldReward = 0;
             timeOfLastAdPlay = DateTime.UtcNow;
         }
         else if(showResult == ShowResult.Skipped)

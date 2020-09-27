@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 400140}
   - component: {fileID: 21209968}
-  - component: {fileID: 11477180}
-  - component: {fileID: 6889960}
+  - component: {fileID: -6740020257540978272}
+  - component: {fileID: 4048161306224315776}
   m_Layer: 10
-  m_Name: MetalScrew
+  m_Name: MetalScrewBullet
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,50 +83,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &11477180
+--- !u!54 &-6740020257540978272
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177150}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &4048161306224315776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177150}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5e62e86fc9742f28017eb1dbe2d4d0, type: 3}
+  m_Script: {fileID: 11500000, guid: d3170b80932ad488bb0f4c220182c818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deadly: 1
-  movementSpeed: 0
-  sinMovement: 0
-  sinRotationSpeed: 3
-  sinRotationIntensity: 3
-  firesProjectiles: 0
-  fireRate: 2
-  fireAngle: 180
-  fireSpeed: 3
-  projectileLifespan: 3
-  projectile: {fileID: 0}
---- !u!68 &6889960
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177150}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.3495865, y: -0.7631984}
-  - {x: -0.34171534, y: -0.5315206}
-  - {x: -0.21912289, y: -0.49402}
-  - {x: -0.0041151047, y: 0.7761822}
-  - {x: 0.22455311, y: -0.49955678}
-  - {x: 0.3498268, y: -0.5712061}
-  - {x: 0.35606194, y: -0.7613435}
-  - {x: -0.34306383, y: -0.7631986}
+  m_Speed: 10
+  m_Lifespan: 3

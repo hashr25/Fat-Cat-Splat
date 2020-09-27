@@ -134,7 +134,7 @@ public class CharacterInventory : MonoBehaviour
                     //They have enough money
                     GameController.gameController.coins -= 200;
                     charactersUnlocked.Add(characterName);
-                    DialogSpawner.dialogSpawner.SpawnErrorDialog("Character purchased! Congratulations!");
+                    DialogSpawner.dialogSpawner.SpawnErrorDialog("Character purchased! Congratulations! You are now using " + characterName + "!");
                     characterPurchased = true;
                     ChangeCharacter(characterName);
                     Save();
@@ -142,7 +142,7 @@ public class CharacterInventory : MonoBehaviour
                 }
                 else
                 {
-                    DialogSpawner.dialogSpawner.SpawnErrorDialog("Error! You can't purchase this character! You don't have enough coins!");
+                    DialogSpawner.dialogSpawner.SpawnErrorDialog("Error! You can't purchase this character! You don't have enough coins! Characters cost 200 coins!");
                     characterPurchased = false;
                 }
             }

@@ -120,8 +120,15 @@ public class CharacterStoreUI : MonoBehaviour
         switch (purchaseButton.text)
         {
             case "Purchase":
-                CharacterInventory.characterInventory.PurchaseCharacter(characterName.text);
-                UpdatePurchaseButton();
+                DialogSpawner.dialogSpawner.SpawnConfirmationDialog("Do you want to purchase " + characterName.text + " for 200 coins?", () =>
+                {
+                    CharacterInventory.characterInventory.PurchaseCharacter(characterName.text);
+                    UpdatePurchaseButton();
+                }, () =>
+                {
+                    DialogSpawner.dialogSpawner.SpawnErrorDialog("Okay! The character will not be purchased!");
+                });
+                
                 break;
             case "Select":
                 CharacterInventory.characterInventory.ChangeCharacter(characterName.text);

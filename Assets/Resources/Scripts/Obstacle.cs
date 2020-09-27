@@ -21,6 +21,9 @@ public class Obstacle : MonoBehaviour {
 	public bool firesProjectiles = false;
 	public float fireRate = 2.0f;
 	public float fireAngle = 180f;
+	public float fireSpeed = 10.0f;
+	public float projectileLifespan = 3.0f;
+	private float timeSinceLastFire = 0.0f;
 	public GameObject projectile;
 
 
@@ -33,10 +36,18 @@ public class Obstacle : MonoBehaviour {
 
 	void Update(){
 		transform.Translate (movementSpeed * Time.deltaTime, VerticalMovement() * Time.deltaTime, 0f);
-	}
 
-	void Move(){
-		
+        /*if (firesProjectiles)
+        {
+			if (timeSinceLastFire > fireRate)
+			{
+				FireProjectile();
+			}
+			else
+            {
+				timeSinceLastFire += Time.deltaTime;
+            }
+		}*/
 	}
 
 	float VerticalMovement(){
@@ -46,4 +57,14 @@ public class Obstacle : MonoBehaviour {
 			return 0f;
 		}
 	}
+
+	void FireProjectile()
+    {
+		GameObject firedProjectile = GameObject.Instantiate(projectile, gameObject.transform.position, Quaternion.Euler(0,0,fireAngle));
+		Rigidbody2D rigidBody = firedProjectile.AddComponent<Rigidbody2D>();
+		rigidBody.AddForce(rigidBody.transform.forward * fireSpeed);
+		Destroy(firedProjectile, projectileLifespan);
+		
+		timeSinceLastFire = 0.0f;
+    }
 }

@@ -2095,7 +2095,7 @@ Transform:
   - {fileID: 203134527}
   - {fileID: 1874099678}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1008434656 stripped
 GameObject:
@@ -4221,6 +4221,8 @@ MonoBehaviour:
   firesProjectiles: 0
   fireRate: 2
   fireAngle: 180
+  fireSpeed: 3
+  projectileLifespan: 3
   projectile: {fileID: 0}
 --- !u!61 &1767588545
 BoxCollider2D:
@@ -4925,7 +4927,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949216909
 GameObject:
@@ -5193,6 +5195,8 @@ MonoBehaviour:
   firesProjectiles: 0
   fireRate: 2
   fireAngle: 180
+  fireSpeed: 3
+  projectileLifespan: 3
   projectile: {fileID: 0}
 --- !u!61 &2012918736
 BoxCollider2D:
@@ -5573,7 +5577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22419786, guid: c42fb66959ab34b9e89bcef8fe97d732, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22419786, guid: c42fb66959ab34b9e89bcef8fe97d732, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

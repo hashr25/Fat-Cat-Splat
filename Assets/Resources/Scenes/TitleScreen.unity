@@ -371,7 +371,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 88230cc0fd1f84d80af294fa3092e8c6, type: 3}
     m_FontSize: 150
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 150
@@ -3111,7 +3111,7 @@ Animator:
   m_GameObject: {fileID: 1168195693}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0567a1201ac1943dc91794449939cfa7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1768861482a09418e9c184897ab410b2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3689,7 +3689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.19215688, g: 0.3647059, b: 0.043137256, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3697,7 +3697,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 88230cc0fd1f84d80af294fa3092e8c6, type: 3}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
@@ -4898,6 +4898,8 @@ MonoBehaviour:
   firesProjectiles: 0
   fireRate: 2
   fireAngle: 180
+  fireSpeed: 10
+  projectileLifespan: 3
   projectile: {fileID: 0}
 --- !u!61 &1767588545
 BoxCollider2D:
@@ -5843,6 +5845,8 @@ MonoBehaviour:
   firesProjectiles: 0
   fireRate: 2
   fireAngle: 180
+  fireSpeed: 10
+  projectileLifespan: 3
   projectile: {fileID: 0}
 --- !u!61 &2012918736
 BoxCollider2D:

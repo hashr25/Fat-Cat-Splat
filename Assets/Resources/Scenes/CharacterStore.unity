@@ -594,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMovementSpeed: 2.5
   fullSceneWidth: 327.68
-  groundShift: 70.19
+  groundShift: 140.38
   scenes:
   - {fileID: 2007411267}
   - {fileID: 561465009}
@@ -2220,7 +2220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1020334895
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2261,7 +2261,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 88230cc0fd1f84d80af294fa3092e8c6, type: 3}
     m_FontSize: 32
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
@@ -2271,7 +2271,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Donate
+  m_Text: Hot Hash Games
 --- !u!222 &1020334897
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2507,7 +2507,7 @@ Animator:
   m_GameObject: {fileID: 1168195693}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0567a1201ac1943dc91794449939cfa7, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1768861482a09418e9c184897ab410b2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3008,7 +3008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.20784315, g: 0.39607847, b: 0.050980397, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3016,7 +3016,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 88230cc0fd1f84d80af294fa3092e8c6, type: 3}
     m_FontSize: 50
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
@@ -3887,7 +3887,7 @@ GameObject:
   - component: {fileID: 1636456089}
   - component: {fileID: 1636456088}
   m_Layer: 5
-  m_Name: Donate
+  m_Name: Dev Site
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3974,7 +3974,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636456086}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -4397,6 +4397,8 @@ MonoBehaviour:
   firesProjectiles: 0
   fireRate: 2
   fireAngle: 180
+  fireSpeed: 10
+  projectileLifespan: 3
   projectile: {fileID: 0}
 --- !u!61 &1767588545
 BoxCollider2D:
@@ -5083,6 +5085,8 @@ MonoBehaviour:
   firesProjectiles: 0
   fireRate: 2
   fireAngle: 180
+  fireSpeed: 10
+  projectileLifespan: 3
   projectile: {fileID: 0}
 --- !u!61 &2012918736
 BoxCollider2D:
@@ -5224,7 +5228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.19215688, g: 0.3647059, b: 0.043137256, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -5232,7 +5236,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: 88230cc0fd1f84d80af294fa3092e8c6, type: 3}
     m_FontSize: 100
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 150
